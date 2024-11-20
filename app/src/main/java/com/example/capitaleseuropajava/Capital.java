@@ -7,6 +7,7 @@ public class Capital {
     int poblacion;
     String pais;
 
+    
     public Capital(int id, String nombre, String img, int poblacion, String pais) {
         this.id = id;
         this.nombre = nombre;
