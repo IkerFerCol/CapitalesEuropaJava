@@ -27,7 +27,6 @@ public class FirstFragment extends Fragment {
             Bundle savedInstanceState
     ) {
 
-        binding.lvcapiales.setAdapter(adapter);
         binding = FragmentFirstBinding.inflate(inflater, container, false);
         return binding.getRoot();
 
@@ -44,10 +43,9 @@ public class FirstFragment extends Fragment {
 
         adapter = new ArrayAdapter<>(getContext(),
                 R.layout.capital_list_item,
-                R.id.lvcapiales ,
+                R.id.txtcapitallist,
                 listacapitales);
-
-
+        binding.lvcapiales.setAdapter(adapter);
 
     }
 
