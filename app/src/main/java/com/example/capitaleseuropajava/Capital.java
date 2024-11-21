@@ -1,19 +1,19 @@
 package com.example.capitaleseuropajava;
 
-public class Capital {
+import java.io.Serializable;
+
+public class Capital implements Serializable {
     int id;
     String nombre;
     String img;
     int poblacion;
-    String pais;
 
     
-    public Capital(int id, String nombre, String img, int poblacion, String pais) {
+    public Capital(int id, String nombre, String img, int poblacion) {
         this.id = id;
         this.nombre = nombre;
         this.img = img;
         this.poblacion = poblacion;
-        this.pais = pais;
     }
 
     public Capital() {
@@ -52,13 +52,6 @@ public class Capital {
         this.poblacion = poblacion;
     }
 
-    public String getPais() {
-        return pais;
-    }
-
-    public void setPais(String pais) {
-        this.pais = pais;
-    }
 
     @Override
     public String toString() {
@@ -67,7 +60,6 @@ public class Capital {
                 ", nombre='" + nombre + '\'' +
                 ", img='" + img + '\'' +
                 ", poblacion=" + poblacion +
-                ", pais='" + pais + '\'' +
                 '}';
     }
 }

@@ -1,7 +1,11 @@
 package com.example.capitaleseuropajava;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -13,13 +17,14 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.example.capitaleseuropajava.databinding.FragmentFirstBinding;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class FirstFragment extends Fragment {
 
     private FragmentFirstBinding binding;
-    ArrayList<String> listacapitales;
-    ArrayAdapter<String> adapter;
+    ArrayList<Capital> listacapitales;
+    ArrayAdapter<Capital> adapter;
 
     @Override
     public View onCreateView(
@@ -37,16 +42,41 @@ public class FirstFragment extends Fragment {
 
 
         listacapitales = new ArrayList<>();
-        listacapitales.add("Madrid");
-        listacapitales.add("Londres");
-        listacapitales.add("Paris");
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        executor.execute(() -> {
+            ArrayList<Capital> pokemons = CapitalAPI.buscar();
+
+            getActivity().runOnUiThread(() -> {
+                for (Capital p : pokemons) {
+                    listacapitales.add(p);
+                }
+                adapter.notifyDataSetChanged();
+            });
+        });
 
         adapter = new ArrayAdapter<>(getContext(),
                 R.layout.capital_list_item,
                 R.id.txtcapitallist,
                 listacapitales);
         binding.lvcapiales.setAdapter(adapter);
+    }
 
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.menu_main, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.refreshbutton){
+            refresh();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -55,4 +85,25 @@ public class FirstFragment extends Fragment {
         binding = null;
     }
 
+    void refresh() {
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        executor.execute(() -> {
+            ArrayList<Capital> pokemons = CapitalAPI.buscar();
+
+            getActivity().runOnUiThread(() -> {
+                for (Capital p : pokemons) {
+                    listacapitales.add(p);
+                }
+                adapter.notifyDataSetChanged();
+            });
+        });
+
+
+        binding.lvcapiales.setOnItemClickListener((adapterView, fragment, i, l) -> {
+            Capital capital = adapter.getItem(i);
+            Bundle args = new Bundle();
+            args.putSerializable("Capital", capital);
+            Log.d("XXX", capital.toString());
+        });
+    }
 }

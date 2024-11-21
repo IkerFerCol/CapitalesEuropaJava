@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -8,7 +9,6 @@
     android:padding="16dp"
     tools:context=".FirstFragment">
 
-    <!-- Aquí puedes agregar tus elementos, como botones, TextViews, etc. -->
 
     <ListView
         android:id="@+id/lvcapiales"
@@ -16,4 +16,8 @@
         android:layout_height="729dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
