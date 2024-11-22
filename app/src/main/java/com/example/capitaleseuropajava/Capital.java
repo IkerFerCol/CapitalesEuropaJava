@@ -3,10 +3,10 @@ package com.example.capitaleseuropajava;
 import java.io.Serializable;
 
 public class Capital implements Serializable {
-    int id;
-    String nombre;
-    String img;
-    int poblacion;
+    private int id;
+    private String nombre;
+    private String img;
+    private int poblacion;
 
     
     public Capital(int id, String nombre, String img, int poblacion) {
@@ -62,4 +62,6 @@ public class Capital implements Serializable {
                 ", poblacion=" + poblacion +
                 '}';
     }
+
+
 }

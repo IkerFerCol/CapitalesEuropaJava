@@ -33,7 +33,12 @@ public class FirstFragment extends Fragment {
     ) {
 
         binding = FragmentFirstBinding.inflate(inflater, container, false);
+
+        listacapitales = new ArrayList<>();
+        setHasOptionsMenu(true);
         return binding.getRoot();
+
+
 
     }
 
@@ -54,9 +59,8 @@ public class FirstFragment extends Fragment {
             });
         });
 
-        adapter = new ArrayAdapter<>(getContext(),
+        adapter = new CapitalAdapter(getContext(),
                 R.layout.capital_list_item,
-                R.id.txtcapitallist,
                 listacapitales);
         binding.lvcapiales.setAdapter(adapter);
     }
@@ -92,6 +96,7 @@ public class FirstFragment extends Fragment {
 
             getActivity().runOnUiThread(() -> {
                 for (Capital p : pokemons) {
+                    Log.d("XXX", p.toString());
                     listacapitales.add(p);
                 }
                 adapter.notifyDataSetChanged();

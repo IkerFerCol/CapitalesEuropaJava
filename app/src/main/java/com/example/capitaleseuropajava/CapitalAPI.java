@@ -25,26 +25,22 @@ public class CapitalAPI {
     public static ArrayList<Capital> buscar() {
         ArrayList<Capital> capitales = new ArrayList<>();
         try {
+
             String response = HttpUtils.get("https://mblxirdgpahxhshiizqj.supabase.co/rest/v1/CapitalsofEurope?apikey=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1ibHhpcmRncGFoeGhzaGlpenFqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzE2NjgyNjEsImV4cCI6MjA0NzI0NDI2MX0.BmebycsUJvj-zRtEfU65fHkhiKbth7IhAe5QJeYLWQI");
-            JSONObject jsonObject = new JSONObject(response);
-            JSONArray results = jsonObject.getJSONArray("results");
+            //JSONObject jsonObject = new JSONObject(response);
+            //JSONArray results = jsonObject.getJSONArray("results");
+            JSONArray resultado = new JSONArray(response);
 
-            for (int i = 0; i < results.length(); i++) {
-                JSONObject capitalObj = results.getJSONObject(i);
-                String name = capitalObj.getString("name");
-                String url = capitalObj.getString("url");
 
-                String capitalDetailsResponse = HttpUtils.get(url);
-                JSONObject capitalDetails = new JSONObject(capitalDetailsResponse);
+            for (int i = 0; i < resultado.length(); i++) {
+                JSONObject capitalObj = resultado.getJSONObject(i);
+                String name = capitalObj.getString("Nombre");
+                Log.d("XXX", name);
+                String iamgen = capitalObj.getString("Img");
+                int id = capitalObj.getInt("id");
+                int poblacion = capitalObj.getInt("Poblacion");
 
-                Log.d("DEBUG", "JSON de " + name + ": " + capitalDetails);
-
-                Integer id = capitalDetails.getInt("id");
-                Integer poblacion = capitalDetails.getInt("poblacion");
-                JSONObject img = capitalDetails.getJSONObject("img");
-                String sprite = img.getString("front_default");
-
-                Capital capital = new Capital(id, name, sprite, poblacion);
+                Capital capital = new Capital(id, name, iamgen, poblacion);
                 capitales.add(capital);
 
             }
@@ -61,6 +57,7 @@ public class CapitalAPI {
     private String doCall(String url){
         try {
             String JsonResponse = HttpUtils.get(url);
+            Log.d("XXX", JsonResponse);
             return JsonResponse;
         } catch (IOException e) {
             throw new RuntimeException(e);
