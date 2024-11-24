@@ -29,21 +29,18 @@ public class CapitalAdapter extends ArrayAdapter<Capital> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         Capital capital = getItem(position);
-        Log.d("XXXX", capital.toString());
 
         if (convertView == null) {
             LayoutInflater inflater = LayoutInflater.from(getContext());
             convertView = inflater.inflate(R.layout.capital_list_item, parent, false);
-            TextView txtNombre = convertView.findViewById(R.id.txtcapitallist);
-            ImageView imgImagen = convertView.findViewById(R.id.imgcapitallist);
-
-            txtNombre.setText(capital.getNombre());
-            Glide.with(getContext()).load(capital.getImg()).into(imgImagen);
-
         }
 
+        TextView txtNombre = convertView.findViewById(R.id.txtcapitalLista);
+        ImageView imgImagen = convertView.findViewById(R.id.imgcapitallist);
 
+        txtNombre.setText(capital.getNombre());
+        Glide.with(getContext()).load(capital.getImg()).into(imgImagen);
 
-        return super.getView(position, convertView, parent);
+        return convertView;
     }
 }

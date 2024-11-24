@@ -17,6 +17,7 @@ public class CapitalAPI {
         Uri builtUri = Uri.parse(BASE_URL)
                 .buildUpon()
                 .appendPath("capital")
+                //.appendQueryParameter("limit", "10")
                 .build();
         String url = builtUri.toString();
         return doCall(url);
@@ -27,8 +28,6 @@ public class CapitalAPI {
         try {
 
             String response = HttpUtils.get("https://mblxirdgpahxhshiizqj.supabase.co/rest/v1/CapitalsofEurope?apikey=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1ibHhpcmRncGFoeGhzaGlpenFqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzE2NjgyNjEsImV4cCI6MjA0NzI0NDI2MX0.BmebycsUJvj-zRtEfU65fHkhiKbth7IhAe5QJeYLWQI");
-            //JSONObject jsonObject = new JSONObject(response);
-            //JSONArray results = jsonObject.getJSONArray("results");
             JSONArray resultado = new JSONArray(response);
 
 

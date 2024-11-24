@@ -35,14 +35,16 @@ public class SettingsActivity extends AppCompatActivity {
         }
     }
 
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
         if (id == R.id.action_settings) {
-            Intent intent = new Intent(this, SettingsActivity.class);
-            startActivity(intent);
+            Intent i = new Intent(this, SettingsActivity.class);
+            startActivity(i);
             return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
 

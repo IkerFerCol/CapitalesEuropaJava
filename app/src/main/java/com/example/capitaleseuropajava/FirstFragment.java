@@ -63,13 +63,19 @@ public class FirstFragment extends Fragment {
                 R.layout.capital_list_item,
                 listacapitales);
         binding.lvcapiales.setAdapter(adapter);
+
+
+        binding.lvcapiales.setOnItemClickListener((adapter, fragment, i, l) -> {
+            Capital capital = (Capital) adapter.getItemAtPosition(i);
+            Bundle args = new Bundle();
+            args.putSerializable("Capital", capital);
+
+            NavHostFragment.findNavController(FirstFragment.this)
+                    .navigate(R.id.action_FirstFragment_to_capital_Details, args);
+        }
+    );
     }
 
-    @Override
-    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.menu_main, menu);
-    }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
