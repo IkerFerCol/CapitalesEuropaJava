@@ -6,10 +6,10 @@ public class Capital implements Serializable {
     private int id;
     private String nombre;
     private String img;
-    private int poblacion;
+    private Integer poblacion;
 
     
-    public Capital(int id, String nombre, String img, int poblacion) {
+    public Capital(int id, String nombre, String img, Integer poblacion) {
         this.id = id;
         this.nombre = nombre;
         this.img = img;
@@ -44,11 +44,11 @@ public class Capital implements Serializable {
         this.img = img;
     }
 
-    public int getPoblacion() {
+    public Integer getPoblacion() {
         return poblacion;
     }
 
-    public void setPoblacion(int poblacion) {
+    public void setPoblacion(Integer poblacion) {
         this.poblacion = poblacion;
     }
 

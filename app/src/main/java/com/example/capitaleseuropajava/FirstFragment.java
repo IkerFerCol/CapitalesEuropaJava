@@ -81,7 +81,7 @@ public class FirstFragment extends Fragment {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.refreshbutton){
+        if (id == R.id.action_refresh){
             refresh();
             return true;
         }
