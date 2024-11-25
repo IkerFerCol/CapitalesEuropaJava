@@ -1,8 +1,13 @@
 package com.example.capitaleseuropajava;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import java.io.Serializable;
 
+@Entity(tableName = "capital")
 public class Capital implements Serializable {
+    @PrimaryKey(autoGenerate = true)
     private int id;
     private String nombre;
     private String img;

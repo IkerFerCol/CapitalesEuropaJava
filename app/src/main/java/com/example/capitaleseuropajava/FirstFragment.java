@@ -12,6 +12,8 @@ import android.widget.ArrayAdapter;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.capitaleseuropajava.databinding.FragmentFirstBinding;
@@ -25,6 +27,7 @@ public class FirstFragment extends Fragment {
     private FragmentFirstBinding binding;
     ArrayList<Capital> listacapitales;
     ArrayAdapter<Capital> adapter;
+    CapitalViewModel model;
 
     @Override
     public View onCreateView(
@@ -74,6 +77,8 @@ public class FirstFragment extends Fragment {
                     .navigate(R.id.action_FirstFragment_to_capital_Details, args);
         }
     );
+
+        model = new ViewModelProvider(this).get(CapitalViewModel.class);
     }
 
 
