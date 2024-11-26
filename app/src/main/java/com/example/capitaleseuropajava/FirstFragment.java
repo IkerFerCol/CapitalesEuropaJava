@@ -1,18 +1,19 @@
 package com.example.capitaleseuropajava;
 
+import static android.content.ContentValues.TAG;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
@@ -52,11 +53,11 @@ public class FirstFragment extends Fragment {
         listacapitales = new ArrayList<>();
         ExecutorService executor = Executors.newSingleThreadExecutor();
         executor.execute(() -> {
-            ArrayList<Capital> pokemons = CapitalAPI.buscar();
+            ArrayList<Capital> capitales = CapitalAPI.buscar();
 
             getActivity().runOnUiThread(() -> {
-                for (Capital p : pokemons) {
-                    listacapitales.add(p);
+                for (Capital capital : capitales) {
+                    listacapitales.add(capital);
                 }
                 adapter.notifyDataSetChanged();
             });
@@ -70,6 +71,8 @@ public class FirstFragment extends Fragment {
 
         binding.lvcapiales.setOnItemClickListener((adapter, fragment, i, l) -> {
             Capital capital = (Capital) adapter.getItemAtPosition(i);
+            Toast.makeText(getContext(), "CLICK!", Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "Click!");
             Bundle args = new Bundle();
             args.putSerializable("Capital", capital);
 
@@ -86,10 +89,18 @@ public class FirstFragment extends Fragment {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.action_refresh){
-            refresh();
+
+        if (id == R.id.action_refresh) {
+            Toast.makeText(getContext(), "Refrescado!", Toast.LENGTH_SHORT).show();
+            Log.d("XXXMenu", "Refrescado");
+        }
+
+        if (id == R.id.action_settings) {
+            Intent i = new Intent(getActivity(), SettingsActivity.class);
+            startActivity(i);
             return true;
         }
+
 
         return super.onOptionsItemSelected(item);
     }
@@ -103,12 +114,12 @@ public class FirstFragment extends Fragment {
     void refresh() {
         ExecutorService executor = Executors.newSingleThreadExecutor();
         executor.execute(() -> {
-            ArrayList<Capital> pokemons = CapitalAPI.buscar();
+            ArrayList<Capital> capitales = CapitalAPI.buscar();
 
             listacapitales.clear();
 
             getActivity().runOnUiThread(() -> {
-                for (Capital p : pokemons) {
+                for (Capital p : capitales) {
                     Log.d("XXX", p.toString());
 
                     listacapitales.add(p);
