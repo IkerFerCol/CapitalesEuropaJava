@@ -10,7 +10,7 @@ import java.util.List;
 
 @Dao
 public interface CapitalDao {
-    @Query("select * from capital")
+    @Query("select * from CapitalsofEurope")
     LiveData<List<Capital>> getCapital();
 
     @Insert
@@ -22,6 +22,6 @@ public interface CapitalDao {
     @Delete
     void deleteCapital(Capital capital);
 
-    @Query("DELETE FROM capital")
+    @Query("DELETE FROM CapitalsofEurope")
     void deleteCapitales();
 }

@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:backgroundTint="@color/material_dynamic_neutral20"
+    android:backgroundTintMode="multiply">
 
     <ImageView
         android:id="@+id/imgcapitallist"
@@ -19,10 +21,10 @@
         android:id="@+id/txtcapitalLista"
         android:layout_width="195dp"
         android:layout_height="36dp"
-        android:fontFamily="@font/abril_fatface"
+        android:fontFamily="@font/akaya_kanadaka"
         android:text="TextView"
         android:textAlignment="center"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold|italic"
         app:layout_constraintBottom_toBottomOf="@+id/imgcapitallist"

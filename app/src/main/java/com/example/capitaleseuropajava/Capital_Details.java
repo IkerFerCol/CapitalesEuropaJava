@@ -58,7 +58,8 @@ public class Capital_Details extends Fragment {
         Log.d("CAPITAL", capital.toString());
         binding.capitalNameDetails.setText("Nombre: " + capital.getNombre());
         binding.capitalPobDetails.setText("Población: " + capital.getPoblacion().toString());
-        Glide.with(getContext()).load(capital.getImg()).into(binding.imgPokemonSpriteDetails);
+        binding.capitalCountDetails.setText("País: " + capital.getPais());
+        Glide.with(getContext()).load(capital.getImg()).into(binding.imgCapitalSpriteDetails);
     }
 
 //    // TODO: Rename parameter arguments, choose names that match

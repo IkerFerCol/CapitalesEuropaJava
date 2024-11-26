@@ -38,8 +38,9 @@ public class CapitalAPI {
                 String iamgen = capitalObj.getString("Img");
                 int id = capitalObj.getInt("id");
                 int poblacion = capitalObj.getInt("Poblacion");
+                String pais = capitalObj.getString("Pais");
 
-                Capital capital = new Capital(id, name, iamgen, poblacion);
+                Capital capital = new Capital(id, name, iamgen, poblacion, pais);
                 capitales.add(capital);
 
             }
