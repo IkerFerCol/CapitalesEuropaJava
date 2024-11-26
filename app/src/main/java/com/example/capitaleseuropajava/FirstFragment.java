@@ -105,9 +105,12 @@ public class FirstFragment extends Fragment {
         executor.execute(() -> {
             ArrayList<Capital> pokemons = CapitalAPI.buscar();
 
+            listacapitales.clear();
+
             getActivity().runOnUiThread(() -> {
                 for (Capital p : pokemons) {
                     Log.d("XXX", p.toString());
+
                     listacapitales.add(p);
                 }
                 adapter.notifyDataSetChanged();
