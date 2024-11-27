@@ -3,9 +3,12 @@
     <PreferenceCategory app:title="Pais">
 
         <EditTextPreference
-            app:key="signature"
+            app:defaultValue="es"
+            app:key="Pais"
             app:title="Capital"
             app:useSimpleSummaryProvider="true" />
+
+
 
     </PreferenceCategory>
 

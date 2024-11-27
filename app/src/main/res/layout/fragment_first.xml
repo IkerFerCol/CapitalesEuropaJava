@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/_e75c0d41ab3c86114fb6a4c4003ad33"
+    android:backgroundTint="@color/material_dynamic_neutral30"
     android:backgroundTintMode="multiply"
     android:padding="16dp"
     tools:context=".FirstFragment">
