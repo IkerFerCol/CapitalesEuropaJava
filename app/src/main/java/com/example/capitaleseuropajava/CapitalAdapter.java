@@ -30,17 +30,20 @@ public class CapitalAdapter extends ArrayAdapter<Capital> {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         Capital capital = getItem(position);
 
+        //Si es nulo, infla el diseño del elemento, sirve para reciclar vistas y mejorar el rendimiento
         if (convertView == null) {
             LayoutInflater inflater = LayoutInflater.from(getContext());
             convertView = inflater.inflate(R.layout.capital_list_item, parent, false);
         }
 
+        //Referencias a los elementos del layout
         TextView txtNombre = convertView.findViewById(R.id.txtcapitalLista);
         ImageView imgImagen = convertView.findViewById(R.id.imgcapitallist);
 
         txtNombre.setText(capital.getNombre());
         Glide.with(getContext()).load(capital.getImg()).into(imgImagen);
 
+        //Devuelve la vista
         return convertView;
     }
 }

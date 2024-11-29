@@ -18,20 +18,22 @@ public class CapitalViewModel extends AndroidViewModel {
 
     public CapitalViewModel(@NonNull Application application) {
         super(application);
-        // Inicializa tu base de datos y DAO aquí
-        AppDatabase appDatabase = AppDatabase.getDatabase(application); // Asegúrate de que este método esté disponible
+        AppDatabase appDatabase = AppDatabase.getDatabase(application);
         capitalDao = appDatabase.getCapitalDao();
     }
 
+    //Metodo para obtener la lista desde la bd
     public LiveData<List<Capital>> getCapitals() {
         return capitalDao.getCapital();
     }
 
+    //Metodo para recargar los datos desde la api a la bd
     public void reload() {
         RefreshDataTask task = new RefreshDataTask();
         task.execute();
     }
 
+    //clase para realizar tareas en segundo plano (Descargar y guardar datos)
     private class RefreshDataTask extends AsyncTask<Void, Void, Void> {
         @Override
         protected Void doInBackground(Void... voids) {

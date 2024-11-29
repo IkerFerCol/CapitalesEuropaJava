@@ -11,6 +11,7 @@ public abstract class AppDatabase extends RoomDatabase {
 
     private static AppDatabase INSTANCE;
 
+    // Método para obtener la instancia de la bd
     public static AppDatabase getDatabase(Context context) {
         if (INSTANCE == null) {
             INSTANCE =
@@ -21,5 +22,6 @@ public abstract class AppDatabase extends RoomDatabase {
         }
         return INSTANCE;
     }
+    //Devuelve un DAO
     public abstract CapitalDao getCapitalDao();
 }

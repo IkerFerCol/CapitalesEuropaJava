@@ -37,10 +37,11 @@ public class FirstFragment extends Fragment {
             @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
     ) {
-
+        //Configuracion inicial del fragmento
         binding = FragmentFirstBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
 
+        //Se inicia la lista y el adapter para el ListView
         listacapitales = new ArrayList<>();
         adapter = new CapitalAdapter(getContext(), R.layout.capital_list_item, listacapitales);
         binding.lvcapiales.setAdapter(adapter);
@@ -50,11 +51,9 @@ public class FirstFragment extends Fragment {
             bundle.putSerializable("Capital", capital);
             NavHostFragment.findNavController(FirstFragment.this).navigate(R.id.action_FirstFragment_to_capital_Details, bundle);
         });
+        //asocia el viewmodel al fragmento
         model = new ViewModelProvider(this).get(CapitalViewModel.class);
-        model.getCapitals().observe(getViewLifecycleOwner(), capitals -> {
-            adapter.clear();
-            adapter.addAll(capitals);
-        });
+
         setHasOptionsMenu(true);
         return view;
 
@@ -64,40 +63,12 @@ public class FirstFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         setHasOptionsMenu(true);
+        //Observa los cambios en los datos y actualiza el adapter
+        model.getCapitals().observe(getViewLifecycleOwner(), capitals -> {
+            adapter.clear();
+            adapter.addAll(capitals);
+        });
 
-//
-//        listacapitales = new ArrayList<>();
-//        ExecutorService executor = Executors.newSingleThreadExecutor();
-//        executor.execute(() -> {
-//            ArrayList<Capital> capitales = CapitalAPI.buscar();
-//
-//            getActivity().runOnUiThread(() -> {
-//                for (Capital capital : capitales) {
-//                    listacapitales.add(capital);
-//                }
-//                adapter.notifyDataSetChanged();
-//            });
-//        });
-//
-//        adapter = new CapitalAdapter(getContext(),
-//                R.layout.capital_list_item,
-//                listacapitales);
-//        binding.lvcapiales.setAdapter(adapter);
-//
-//
-//        binding.lvcapiales.setOnItemClickListener((adapter, fragment, i, l) -> {
-//                    Capital capital = (Capital) adapter.getItemAtPosition(i);
-//                    Toast.makeText(getContext(), "CLICK!", Toast.LENGTH_SHORT).show();
-//                    Log.d(TAG, "Click!");
-//                    Bundle args = new Bundle();
-//                    args.putSerializable("Capital", capital);
-//
-//                    NavHostFragment.findNavController(FirstFragment.this)
-//                            .navigate(R.id.action_FirstFragment_to_capital_Details, args);
-//                }
-//        );
-//
-//        model = new ViewModelProvider(this).get(CapitalViewModel.class);
     }
 
 
@@ -135,30 +106,8 @@ public class FirstFragment extends Fragment {
         binding = null;
     }
 
+    //Metodo para recargar los datos desde la API
     void refresh() {
         model.reload();
-//        ExecutorService executor = Executors.newSingleThreadExecutor();
-//        executor.execute(() -> {
-//            ArrayList<Capital> capitales = CapitalAPI.buscar();
-//
-//            listacapitales.clear();
-//
-//            getActivity().runOnUiThread(() -> {
-//                for (Capital p : capitales) {
-//                    Log.d("XXX", p.toString());
-//
-//                    listacapitales.add(p);
-//                }
-//                adapter.notifyDataSetChanged();
-//            });
-//        });
-
-
-//        binding.lvcapiales.setOnItemClickListener((adapterView, fragment, i, l) -> {
-//            Capital capital = adapter.getItem(i);
-//            Bundle args = new Bundle();
-//            args.putSerializable("Capital", capital);
-//            Log.d("XXX", capital.toString());
-//        });
     }
 }

@@ -12,6 +12,7 @@ import java.util.List;
 public interface CapitalDao {
     @Query("select * from CapitalsofEurope")
     LiveData<List<Capital>> getCapital();
+    //LiveData para observar los cambios en los datos de la bd
 
     @Insert
     void addCapital(Capital capital);
@@ -24,4 +25,5 @@ public interface CapitalDao {
 
     @Query("DELETE FROM CapitalsofEurope")
     void deleteCapitales();
+    //Esto es util para limpiar la tabla
 }
