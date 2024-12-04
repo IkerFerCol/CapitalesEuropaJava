@@ -37,9 +37,7 @@ public class CapitalViewModel extends AndroidViewModel {
     private class RefreshDataTask extends AsyncTask<Void, Void, Void> {
         @Override
         protected Void doInBackground(Void... voids) {
-            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(
-                    getApplication().getApplicationContext()
-            );
+
 
             CapitalAPI api = new CapitalAPI();
             ArrayList<Capital> result = api.buscar();

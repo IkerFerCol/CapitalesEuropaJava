@@ -11,18 +11,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class CapitalAPI {
-    //La URL base para acceder a la api
-    private final String BASE_URL = "https://mblxirdgpahxhshiizqj.supabase.co/rest/v1/CapitalsofEurope?apikey=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1ibHhpcmRncGFoeGhzaGlpenFqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzE2NjgyNjEsImV4cCI6MjA0NzI0NDI2MX0.BmebycsUJvj-zRtEfU65fHkhiKbth7IhAe5QJeYLWQI";
-
-    //Metodo para construir la URI y llamar a HTTP
-    String getNames(String name) {
-        Uri builtUri = Uri.parse(BASE_URL)
-                .buildUpon()
-                .appendPath("capital")
-                .build();
-        String url = builtUri.toString();
-        return doCall(url);
-    }
 
     //Metodo que devuelve la lista de los objetos Capital tras mirar la api
     public static ArrayList<Capital> buscar() {
@@ -48,24 +36,11 @@ public class CapitalAPI {
                 capitales.add(capital);
 
             }
-        } catch (JSONException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
+        } catch (JSONException | IOException e) {
             throw new RuntimeException(e);
         }
         return capitales;
     }
 
-
-    //Metodo para llamar a HTTP y devolver la respuesta utilizando String
-    private String doCall(String url){
-        try {
-            String JsonResponse = HttpUtils.get(url);
-            Log.d("XXX", JsonResponse);
-            return JsonResponse;
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
 }

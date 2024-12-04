@@ -26,4 +26,5 @@ public interface CapitalDao {
     @Query("DELETE FROM CapitalsofEurope")
     void deleteCapitales();
     //Esto es util para limpiar la tabla
+
 }
